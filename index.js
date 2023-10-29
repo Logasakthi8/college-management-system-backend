@@ -9,7 +9,7 @@ const path = require('path');
 app.use(cors());
 app.use(express.json()); //to convert request data to json
 
-app.get("/", (req, res) {
+app.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials","true");
     res.send("Api is running");
 });
