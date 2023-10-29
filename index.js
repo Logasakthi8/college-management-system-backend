@@ -9,6 +9,11 @@ const path = require('path');
 app.use(cors());
 app.use(express.json()); //to convert request data to json
 
+app.get("/", (req, res) {
+    res.setHeader("Access-Control-Allow-Credentials","true");
+    res.send("Api is running");
+});
+
 // Credential Apis
 app.use("/api/student/auth", require("./routes/Student Api/studentCredential"));
 app.use("/api/faculty/auth", require("./routes/Faculty Api/facultyCredential"));
@@ -25,10 +30,8 @@ app.use("/api/subject", require("./routes/subject"));
 app.use("/api/marks", require("./routes/marks"));
 app.use("/api/branch", require("./routes/branch"));
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
-});
+
+
 
 app.listen(port, () => {
     console.log('Server running successfully');
